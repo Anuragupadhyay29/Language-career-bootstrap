@@ -1,0 +1,29 @@
+header {
+    nav {
+        .navbar-brand {
+            img {
+                max-height: 60px;
+                @include media-breakpoint-down(sm) {
+                    max-height: 45px;
+                }
+            }
+        }
+        ul {
+            margin-bottom: 0;
+            padding: 0;
+            list-style: none;
+            li {
+                margin-left: 1rem;
+                a {
+                    color: #022b4f;
+                    font-weight: 500;
+                    padding: 0;
+                    &:hover {
+                        color: #65c1be;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}

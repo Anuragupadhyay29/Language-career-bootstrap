@@ -1,0 +1,22 @@
+// Include all of Bootstrap (find out more at https://getbootstrap.com/docs/4.0/getting-started/theming/)
+//@import "../../../../vendor/twbs/bootstrap/scss/bootstrap";
+
+// Include ONLY the parts of Bootstrap we need...
+// ...(the first 3 lines don't actually output any code but are required for our custom SASS)
+@import "../../../../../vendor/twbs/bootstrap/scss/_functions";
+@import "../../../../../vendor/twbs/bootstrap/scss/_variables";
+@import "../../../../../vendor/twbs/bootstrap/scss/_mixins";
+@import "../../../../../vendor/twbs/bootstrap/scss/mixins/_breakpoints";
+
+@import "../../../../../vendor/twbs/bootstrap/scss/_reboot";
+
+// This line can be removed once we have created our semantic grid!...
+// ...for now it allows us to fall back on the use of the default classes (e.g. col-lg-6)
+// 2018-05-24 - It appears we need to leave this line in BUT I have commented out the last line in the file below that does the same job!
+@import "../../../../../vendor/twbs/bootstrap/scss/_grid";
+
+//@import "../../../../../vendor/twbs/bootstrap/scss/_images";
+@import "../../../../../vendor/twbs/bootstrap/scss/_buttons";
+
+@import "../../../../../vendor/twbs/bootstrap/scss/_nav";
+@import "../../../../../vendor/twbs/bootstrap/scss/_navbar";

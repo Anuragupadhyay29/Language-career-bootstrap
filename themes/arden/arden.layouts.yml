@@ -1,0 +1,100 @@
+layout_onecol:
+  label: 'One column'
+  class: '\Drupal\api\ArdenLayoutClass'
+  category: 'Arden Layouts'
+  template: templates/layout--onecol
+  #library: css/layout_onecol
+  default_region: main
+  icon_map:
+    - [main]
+  regions:
+    main:
+      label: Main
+layout_twocol:
+  label: 'Two column'
+  category: 'Arden Layouts'
+  template: templates/layout--twocol
+  #library: css/layout_twocol
+  icon_map:
+    - [first, second]
+  regions:
+    first:
+      label: First
+    second:
+      label: Second
+layout_threecol:
+  label: 'Three column 33/34/33'
+  category: 'Arden Layouts'
+  template: templates/layout--threecol
+  #library: css/layout_threecol
+  icon_map:
+    - [first, second, third]
+  regions:
+    first:
+      label: First
+    second:
+      label: Second
+    third:
+      label: Third
+layout_fourcol:
+  label: 'Four column 25/25/25/25'
+  category: 'Arden Layouts'
+  template: templates/layout--fourcol
+  #library: css/layout_fourcol
+  icon_map:
+    - [first, second, third, fourth]
+  regions:
+    first:
+      label: First
+    second:
+      label: Second
+    third:
+      label: Third
+    fourth:
+      label: Fourth
+layout_twocol_25_75:
+  label: 'Two column 25/75'
+  category: 'Arden Layouts'
+  template: templates/layout--twocol-25-75
+  #library: css/layout--twocol-25-75
+  icon_map:
+    - [first, second, second, second]
+  regions:
+    first:
+      label: First
+    second:
+      label: Second
+layout_twocol_75_25:
+  label: 'Two column 75/25'
+  category: 'Arden Layouts'
+  template: templates/layout--twocol-75-25
+  #library: css/layout--twocol-75-25
+  icon_map:
+    - [first, first, first, second]
+  regions:
+    first:
+      label: First
+    second:
+      label: Second
+layout_twocol_66_34:
+  label: 'Two column 66/34'
+  category: 'Arden Layouts'
+  template: templates/layout--twocol-66-34
+  icon_map:
+    - [first, first, second]
+  regions:
+    first:
+      label: First
+    second:
+      label: Second
+layout_twocol_34_66:
+  label: 'Two column 34/66'
+  category: 'Arden Layouts'
+  template: templates/layout--twocol-34-66
+  icon_map:
+    - [first, second, second]
+  regions:
+    first:
+      label: First
+    second:
+      label: Second

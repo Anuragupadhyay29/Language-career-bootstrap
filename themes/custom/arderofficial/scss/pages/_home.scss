@@ -1,0 +1,137 @@
+h1.title {
+  color: #022b4f;
+  font-family: "politica-extrabold";
+  text-transform: uppercase;
+}
+.views-field-body{
+  padding: 15px 0;
+  h4 {
+    color: #022b4f;
+    font-family: "politica-extrabold";
+    font-weight: 600;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 15px 0px;
+  }
+}
+.page-content {
+  padding: 15px 0;
+  .question {
+    color: #022b4f;
+    font-family: "politica-extrabold";
+    font-weight: 600;
+    padding: 15px 0px;
+  }
+  .answer,
+  .content {
+    color: #454545;
+  }
+  th {
+    background-color: #f0f5f8;
+    color: #022b4f;
+    text-transform: uppercase;
+    font-size: 14px;
+    text-align: center;
+    padding: 10px;
+    border-top: 3px solid #022b4f;
+  }
+  .btn-container {
+    text-align: center;
+  }
+  .btn-yellow {
+    background: #fcbf2c;
+    color: #022b4f;
+    padding: 8px 20px;
+    border-radius: 0;
+    font-weight: 700;
+  }
+  tbody:nth-child(even) {
+    background: #fff !important;
+  }
+  td {
+    text-align: center;
+    padding: 10px;
+  }
+  .main-heading {
+    color: #022b4f;
+    font-family: "politica-extrabold";
+    font-weight: 600;
+    font-size: 26px;
+    padding: 15px 0px;
+  }
+  .sub-heading {
+    color: #022b4f;
+    font-family: "politica-extrabold";
+    font-weight: 600;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 15px 0px;
+  }
+  .tutors-heading {
+    padding: 14px 29.3px 13px 22px;
+    background-color: #022b4f;
+    color: #fff;
+  }
+  .tutor-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 0 0 30%;
+    justify-content: space-between;
+  }
+  .tutor-card {
+    margin-top: 2%;
+    width: 49%;
+    min-height: 300px;
+    background: #fff;
+    padding: 25px;
+  }
+  .tutor-name {
+    color: #022b4f;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+  }
+  .tutor-title {
+    width: 100%;
+    text-align: center;
+  }
+  .tutor-description {
+    margin: 20px 0px;
+  }
+  .steps {
+    display: flex;
+    justify-content: space-between;
+    margin: 70px 0px 110px 0px;
+  }
+  .step-separator {
+    border-bottom: 2px solid #022b4f;
+    width: 16%;
+    margin-bottom: 55px;
+  }
+  .step-text {
+    width: 110px;
+    text-align: center;
+    color: #022b4f;
+    font-weight: 600;
+    position: absolute;
+  }
+  .video img {
+    width: 100%;
+  }
+  .video-heading {
+    background-color: #ccc;
+    padding: 10px;
+    color: #00637d;
+    font-weight: 600;
+    opacity: 0.8;
+  }
+  a {
+    color: #022b4f;
+    font-weight: 600;
+  }
+}
+.main-content-view{
+  .row{
+    margin:0;
+  }
+}

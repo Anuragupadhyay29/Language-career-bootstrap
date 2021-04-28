@@ -1,0 +1,101 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - provider: The module or other provider that provided this block plugin.
+ *   - Block plugin specific settings will also be stored here.
+ * - content: The content of this block.
+ * - attributes: array of HTML attributes populated by modules, intended to
+ *   be added to the main container tag of this template.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_block()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% if banners is iterable %}
+
+  {% if banners|length > 0 %}
+
+    {% for key, banner in banners %}
+
+      {% set banner_image = file_url(banner.field_desktop_image.entity.field_media_image.entity.fileuri) %}
+
+      {% if banner_image != '/' %}
+      <style type="text/css">
+        #banner_{{ key }} {
+          background-image: url('{{ banner_image }}');
+        }
+      </style>
+      {% endif %}
+
+    {% endfor %}
+<div class="hero-banner">
+  <div class="row m-0">
+    <div class="col-md-6 p-0 pr-lg-5">
+      <img src="{{ base_path ~ directory }}/images/home-banner.jpg" alt="banner">
+    </div>
+    <div class="col-md-6 p-3 pl-lg-5 pr-lg-5 align-self-center">
+      <h1>Online Learning Anytime, Anywhere! <b>WELCOME TO ARDEN LIBRARY</b></h1>
+      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy </p>
+      <a href="#" class="btn btn-sm">SEARCH FOR LIBRARY RESOURCES</a>
+    </div>
+  </div>
+</div>
+    <!--<div id="banner" class="glider-contain">
+      <div class="glider">
+
+      {% for key, banner in banners %}
+
+      <div id="banner_{{ key }}">
+        {{ banner.body.0.value|raw }}
+        {% if banner.field_button.0.uri %}
+        <p><a href="{{ banner.field_button.0.uri }}" title="{{ banner.field_button.0.title }}">{{ banner.field_button.0.title }}</a></p>
+        {% endif %}
+      </div>
+
+      {% endfor %}
+
+      </div>
+
+      {% if banners|length > 1 %}
+      <button aria-label="Previous" class="glider-prev">&lsaquo;</button>
+      <button aria-label="Next" class="glider-next">&rsaquo;</button>
+      {% endif %}
+
+    </div>-->
+
+    <script type="text/javascript">
+    window.addEventListener('load', function(){
+      new Glider(document.querySelector('.glider'), {
+        slidesToShow: 1, //'auto',
+        slidesToScroll: 1,
+        draggable: true,
+        scrollLock: true,
+        rewind: true,
+        arrows: {
+            prev: '.glider-prev',
+            next: '.glider-next'
+        },
+      })
+    });
+    </script>
+
+  {% endif %}
+
+{% endif %}

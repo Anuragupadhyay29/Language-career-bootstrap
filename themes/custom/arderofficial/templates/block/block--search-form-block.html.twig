@@ -1,0 +1,62 @@
+{% if is_mobile %}
+    {% if mobile_display == true %}
+        <div{{ attributes }}>
+            {{ title_suffix }}
+            {{ html|raw }}
+        </div>
+    {% endif %}
+
+{% else %}
+    <div{{ attributes }}>
+        {{ title_suffix }}
+
+      <div class="search_panel">
+                <ul class="list-unstyled d-flex">
+                  <li><a href="#" title="Search catalog" class="showhide is-active" data-div="search_catalog">Search library catalog</a></li>
+                  <li><a href="#" title="Search website" class="showhide " data-div="search_website">Search website</a></li>
+                </ul>
+                <!--<span>Search website</span> <span>Search catalog</span>-->
+
+          <div id="search_website" style="display: none;">
+                <form action="/search/website" method="get">
+                  <input id="search_website_input" name="keys" type="text" placeholder="Type here to search the website" value="" class="form-search form-control" />
+                  <button data-drupal-selector="edit-submit" type="submit" id="edit-submit" value="Search" class="button js-form-submit form-submit btn btn-primary">Search</button>
+                </form>
+          </div>
+
+          <div id="search_catalog" style="display: block;">
+                <form class="ebscohostCustomSearchBox" action="" onsubmit="return ebscoHostSearchGo(this);" method="post" style="overflow:hidden;">
+                  <input id="ebscohostwindow" name="ebscohostwindow" type="hidden" value="1" />
+                  <input id="ebscohosturl" name="ebscohosturl" type="hidden" value="https://search.ebscohost.com/login.aspx?direct=true&scope=site&type=0&site=eds-live&lang=en&authtype=shib&custid=ns019211&ssl=Y" />
+                  <input id="ebscohostsearchsrc" name="ebscohostsearchsrc" type="hidden" value="db" />
+                  <input id="ebscohostsearchmode" name="ebscohostsearchmode" type="hidden" value="+" />
+                  <input id="ebscohostkeywords" name="ebscohostkeywords" type="hidden" value="" />
+                  <input name="ebscohostsearchtext" type="text" placeholder="Type here to search the website" class="form-search form-control" />
+                  <button data-drupal-selector="edit-submit" type="submit" id="edit-submit" value="Search" class="button js-form-submit form-submit btn btn-primary">Search</button>
+
+                  <br/>
+                  <input class="radio" type="radio" name="searchFieldSelector" id="guidedField_0" value="" checked="checked" />
+                  <label class="label" for="guidedField_0"> Keyword</label>
+                  <input class="radio" type="radio" name="searchFieldSelector" id="guidedField_1" value="TI" />
+                  <label class="label" for="guidedField_1"> Title</label>
+                  <input class="radio" type="radio" name="searchFieldSelector" id="guidedField_2" value="AU" />
+                  <label class="label" for="guidedField_2"> Author</label>
+                  <script src="https://widgets.ebscohost.com/eit/scripts/ebscohostsearch.js" type="text/javascript" defer></script>
+
+                </form>
+          </div>
+        </div>
+
+    </div>
+{% endif %}
+
+<script type="text/javascript">
+const queryString = window.location.search;
+console.log(queryString);
+const urlParams = new URLSearchParams(queryString);
+if (urlParams.has('keys')) {
+  const search_keys = urlParams.get('keys')
+  console.log(search_keys);
+  document.getElementById('search_website_input').value = search_keys;
+}
+</script>

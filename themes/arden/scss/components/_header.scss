@@ -1,0 +1,26 @@
+header {
+    nav {
+        display: none;
+        @media only screen and (min-width: 768px) {
+            display: block;
+        }
+        ul {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 0;
+            padding: 0;
+            list-style: none;
+            li {
+                margin-left: 2.5rem;
+                a {
+                    color: #022b4f;
+                    font-weight: 500;
+                    &:hover {
+                        color: #65c1be;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}

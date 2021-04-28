@@ -1,0 +1,32 @@
+.featured-banner {
+  .view-content.row {
+    display: block;
+    margin: 0;
+  }
+  .hero-banner {
+    background: #022b4f;
+    color: #fff;
+    img {
+      width: 100%;
+      height: auto;
+    }
+    h1 {
+      font-size: 2.3rem;
+      font-family: "politica-extrabold";
+      margin-bottom: 1.5rem;
+      b {
+        color: #65c1be;
+        display: block;
+        font-size: 2.5rem;
+      }
+    }
+    .btn {
+      margin-top: 1.5rem;
+      background: #fcbf2c;
+      color: #022b4f;
+      padding: 8px 20px;
+      border-radius: 0;
+      font-weight: 700;
+    }
+  }
+}

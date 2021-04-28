@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a breadcrumb trail.
+ *
+ * Available variables:
+ * - breadcrumb: Breadcrumb trail items.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% if breadcrumbs %}
+<!--
+<div class="container">
+  <nav class="breadcrumb">
+    <ul>
+      {% for item in breadcrumbs %}
+        {% if not loop.last %}
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">{% if not loop.first %}<i class="fa fa-angle-right"></i>{% endif %}<a href="{{ item.url }}" itemprop="url"><span itemprop="title">{{ item.text }}</span></a></li>
+        {% else %}
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><i class="fa fa-angle-right"></i> <span itemprop="title">{{ item.text }}</span><meta itemprop="url" content="{{ item.url }}" /></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </nav>
+</div>
+-->
+{% endif %}

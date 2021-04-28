@@ -1,0 +1,50 @@
+.search_panel {
+    padding: 40px 0;
+    li {
+        margin-right: 20px;
+        a {
+            color: #3f4952;
+            text-transform: uppercase;
+            font-weight: 700;
+            &.is-active {
+                color: #022b4f;
+            }
+        }
+    }
+    span {
+        text-transform: uppercase;
+    }
+    form {
+        width: 100%;
+        position: relative;
+    }
+    input[type="text"],
+    input[type="submit"] {
+        padding: 1rem;
+        display: inline-block;
+        border: none;
+    }
+    input[type="text"] {
+        width: 100%;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        outline: none;
+    }
+    input[type="submit"] {
+        background-color: #fff;
+        position: absolute;
+        right: 0;
+        background-image: url("https://bucket-st1-alpha-lib-arden-dev01.s3-eu-west-1.amazonaws.com/s3fs-public/search.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        min-width: 50px;
+        background-size: 25px;
+        outline: none;
+    }
+    input[type="checkbox"],
+    label {
+        margin-top: 15px;
+    }
+    label {
+        margin-right: 20px;
+    }
+}

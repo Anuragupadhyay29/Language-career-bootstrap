@@ -1,0 +1,20 @@
+{% if is_mobile %}
+    {% if mobile_display == true %}
+        <div{{ attributes }}>
+            {{ title_suffix }}
+            {{ html|raw }}
+        </div>
+    {% endif %}
+
+{% else %}
+    <div{{ attributes }}>
+        {{ title_suffix }}
+
+      <div class="tile update" style="text-align: center;">
+          <p style="margin-bottom: 0.5rem;"><span style="color: #666;">Welcome to your</span><br/> <span style="font-size:22px; font-weight: bold; color: #155171;">Arden University Library</span></p>
+          <p style="margin-bottom: 0.5rem;"><img src="https://bucket-st1-alpha-lib-arden-dev01.s3-eu-west-1.amazonaws.com/s3fs-public/arden_tour.png" alt="Tour" width="110" /></p>
+          <p><span style="color: #666; font-weight: bold;">Take a short tour to see new features</span></p>
+          <p><!--<a href="#" class="btn" style="background-color: #ccc; color: #666;">Not now</a>--> <a href="#" class="btn" style="background-color: #ef7a79; color: #fff;">Yes, start the tour!</a></p>
+        </div>
+    </div>
+{% endif %}

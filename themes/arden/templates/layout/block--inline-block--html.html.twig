@@ -1,0 +1,14 @@
+{% if is_mobile %}
+    {% if mobile_display == true %}
+        <div{{ attributes }}>
+            {{ title_suffix }}
+            {{ html|raw }}
+        </div>
+    {% endif %}
+
+{% else %}
+    <div{{ attributes }}>
+        {{ title_suffix }}
+        {{ html|raw }}
+    </div>
+{% endif %}

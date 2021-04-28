@@ -1,0 +1,231 @@
+.tiles {
+    margin-bottom: 30px;
+}
+
+.tiles .row {
+    margin-left: -30px;
+    margin-right: -30px;
+}
+
+.layout--onecol {
+    h2 {
+        margin-bottom: 25px;
+    }
+    .tile {
+        border-bottom: 5px solid #fcbf00;
+    }
+}
+
+.tile {
+    background-color: #fff;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: bold;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0, 43, 79, 0.22);
+    position: relative;
+    >a {
+        padding: 3rem 0;
+        display: inline-block;
+        color: #155171;
+        text-decoration: none;
+        height: 100%;
+        width: 100%;
+        &:hover {
+            background-color: #65c1be;
+            color: #fff;
+        }
+        &:hover img.front {
+            display: none;
+        }
+        &:hover img.back {
+            display: inline-block;
+        }
+        img {
+            max-height: 80px;
+            max-width: 100%;
+        }
+        img.back {
+            display: none;
+        }
+    }
+    span {
+        display: block;
+        font-family: 'politica-extrabold';
+        margin-top: 1rem;
+        font-size: 1.2rem;
+    }
+}
+
+.tile.update {
+    text-align: left;
+    padding: 20px;
+    font-weight: normal;
+}
+
+.tile.update p {
+    position: relative;
+    bottom: auto;
+}
+
+.tile.update p span {
+    position: relative;
+    left: auto;
+    bottom: 0;
+}
+
+.tile.update h3 {
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.tile.update a {
+    text-decoration: none;
+    color: #155171;
+}
+
+.tile.update a:hover,
+.tile.update a:hover .date,
+.tile.update a:hover h4 {
+    text-decoration: none;
+    /*background-color: #155171;*/
+    color: #fff !important;
+}
+
+.tile.update a>div {
+    display: table;
+    margin-bottom: 10px;
+}
+
+.tile.update a>div.announcement {
+    background-color: #f4fbfa;
+}
+
+
+/*.updates .tile a > div.announcement:last-of-type {
+  margin-bottom: 0;
+}*/
+
+.tile.update a>div.news {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+}
+
+
+/*.updates .tile a > div.news:last-of-type {
+  border-bottom: 0px;
+  margin-bottom: 0;
+}*/
+
+
+/*.updates .tile a > div.news .preview {
+  padding-left: 0;
+  padding-right: 0;
+}*/
+
+.tile.update .preview h4 {
+    margin: 10px 0 0px 0;
+    color: #65c1be;
+    font-size: 16px;
+}
+
+.tile.update .preview p {
+    font-size: 11px;
+}
+
+.tile.update a:not(.btn) {
+    padding: 0;
+    float: none;
+    top: auto;
+    bottom: auto;
+    min-height: auto;
+}
+
+.tile.update a:hover div {
+    background-color: #155171;
+}
+
+.tile.update a:hover {
+    background: none;
+}
+
+.tile.update span {
+    position: relative;
+    top: auto;
+    bottom: auto;
+}
+
+.tile.update .scrollable {
+    width: 100%;
+    max-height: 275px;
+    overflow: auto;
+}
+
+.updates-block {
+    background: #022b4f;
+    padding: 40px 0;
+    margin-top: 20px;
+    .d-flex {
+        margin-bottom: 25px;
+        span {
+            a {
+                padding: 3px 0;
+                color: #fff;
+                margin-left: 15px;
+                border-bottom: 2px solid transparent;
+                text-decoration: none;
+                &:hover {
+                    border-color: #fcbf00;
+                }
+            }
+        }
+    }
+    .layout {
+        .layout__region {
+            div {
+                height: 100%;
+                div {
+                    height: auto;
+                }
+            }
+            .update {
+                height: 100%;
+                overflow: auto !important;
+            }
+        }
+    }
+}
+
+.tile {
+    a {
+        .announcement {
+            display: flex !important;
+            .date {
+                font-weight: 500;
+                color: #516370;
+                font-size: 0.9rem;
+                text-align: center;
+                line-height: 1.5rem;
+                padding: 0 10px;
+                &::after {
+                    content: "";
+                    display: block;
+                    border-bottom: 2px solid #65c1be;
+                    display: table;
+                    width: 90%;
+                }
+                span {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    margin-top: 0;
+                    font-family: 'Aktiv Grotesk' !important;
+                }
+            }
+            .preview {
+                padding-left: 0;
+            }
+        }
+    }
+}

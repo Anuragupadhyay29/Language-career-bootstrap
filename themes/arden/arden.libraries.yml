@@ -1,0 +1,17 @@
+global-styling:
+  version: 1.x
+  css:
+    theme:
+      css/main.min.css: {}
+      #css/stylesheet.css: {}
+      css/drupal.min.css: {}
+global-scripts:
+  version: 1.0.0
+  js:
+    #js/javascript.min.js: { attributes: { async: true, defer: true } }
+    js/javascript.js: {}
+    #js/dialog_box.js: { attributes: { defer: true } }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.ajax

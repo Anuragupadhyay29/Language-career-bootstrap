@@ -1,0 +1,40 @@
+{% if is_mobile %}
+    {% if mobile_display == true %}
+        <div{{ attributes }}>
+            {{ title_suffix }}
+            {{ html|raw }}
+        </div>
+    {% endif %}
+
+{% else %}
+    <div{{ attributes }}>
+      {{ title_suffix }}
+
+      <div class="tile update" style="overflow: scroll;">
+        <h3>Announcement</h3>
+
+        <div class="scrollable">
+        {% if announcements is iterable %}
+          {% for key, announcement in announcements %}
+
+            <!--<a href="{{ path('entity.node.canonical', {'node': announcement.id}) }}" title="{{ announcement.title.value }}">-->
+            <a href="{{ announcement.field_button.0.uri }}" target="_blank" title="{{ announcement.title.value }}">
+              <div class="announcement">
+                <div class="date col-md-2">
+                  {{ announcement.field_date.value|date("M") }}
+                  <br/><span>{{ announcement.field_date.value|date("d") }}</span>
+                </div>
+                <div class="preview col-md-8">
+                  <h4>{{ announcement.title.value }}</h4>
+                  <p>{{ announcement.body.0.summary|raw }}</p>
+                </div>
+              </div>
+            </a>
+
+          {% endfor %}
+        {% endif %}
+        </div>
+
+      </div>
+    </div>
+{% endif %}

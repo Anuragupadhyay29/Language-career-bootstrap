@@ -1,0 +1,56 @@
+.search-form {
+  display: none;
+}
+
+.search_panel {
+  padding: 40px 0px 20px 0px;
+  h2 {
+    font-size: 16px;
+    font-family: "Aktiv Grotesk";
+    font-weight: 700;
+  }
+  li {
+    margin-right: 20px;
+    a {
+      color: #3f4952;
+      text-transform: uppercase;
+      font-weight: 700;
+      &.is-active {
+        color: #022b4f;
+      }
+    }
+  }
+  form {
+    width: 100%;
+    position: relative;
+    margin: 0;
+    fieldset {
+      width: 100%;
+      padding: 0;
+      flex: auto;
+    }
+    .form-control,
+    .form-submit {
+      border: none;
+      height: 50px;
+    }
+    .form-control {
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+      padding-right: 40px;
+      border-radius: 0;
+    }
+    .form-submit {
+      background-color: #fff;
+      position: absolute;
+      right: 0;
+      top: 0;
+      background-image: url("https://bucket-st1-alpha-lib-arden-dev01.s3-eu-west-1.amazonaws.com/s3fs-public/search.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      min-width: 40px;
+      background-size: 25px;
+      outline: none;
+      font-size: 0px;
+    }
+  }
+}

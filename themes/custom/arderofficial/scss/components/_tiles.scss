@@ -1,0 +1,285 @@
+.mainSection {
+  h2 {
+    margin-bottom: 25px;
+  }
+  .col-md-4.col-lg-4 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .tile {
+    border-bottom: 5px solid #fcbf00;
+    box-shadow: 0 0 15px rgba(0, 43, 79, 0.22);
+    text-align: center;
+    height: 100%;
+    a {
+      padding: 3rem 0;
+    }
+    span {
+      display: block;
+      font-family: "politica-extrabold";
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.tile {
+  background-color: #fff;
+  position: relative;
+  a {
+    height: 100%;
+    display: inline-block;
+    color: #002b4f;
+    text-decoration: none;
+    height: 100%;
+    width: 100%;
+    &:hover {
+      transition: 500ms;
+      background-color: #002b4f;
+      color: #fff;
+      img {
+        &:nth-child(1) {
+          display: none;
+        }
+        &:nth-child(2) {
+          display: inline-block;
+        }
+      }
+    }
+    img {
+      max-height: 80px;
+      max-width: 100%;
+      height: auto;
+      width: auto;
+      &:nth-child(2) {
+        display: none;
+      }
+    }
+  }
+}
+
+.tile.update {
+  text-align: left;
+  padding: 20px;
+  font-weight: normal;
+  height: 300px;
+  overflow: auto;
+  h2 {
+    font-family: "politica-extrabold";
+    color: #002b4f;
+    font-size: 22px;
+    text-transform: inherit;
+    border-bottom: 0.5px solid rgba($color: #005c85, $alpha: 0.25);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+  }
+}
+
+.tile.update p {
+  position: relative;
+  bottom: auto;
+}
+
+.tile.update p span {
+  position: relative;
+  left: auto;
+  bottom: 0;
+}
+
+.tile.update h3 {
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.tile.update a {
+  text-decoration: none;
+  color: #155171;
+}
+
+.tile.update a:hover,
+.tile.update a:hover .date,
+.tile.update a:hover .time,
+.tile.update a:hover h4 {
+  text-decoration: none;
+  /*background-color: #155171;*/
+  color: #fff !important;
+}
+
+.tile.update a > div {
+  display: table;
+  margin-bottom: 10px;
+}
+
+.tile.update a > div.announcement {
+  background-color: #f4fbfa;
+}
+
+.tile.update a > div.news {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+}
+
+.tile.update .preview h4 {
+  margin: 10px 0 0px 0;
+  color: #65c1be;
+  font-size: 16px;
+}
+
+.tile.update .preview p {
+  font-size: 11px;
+}
+
+.tile.update a:not(.btn) {
+  padding: 0;
+  float: none;
+  top: auto;
+  bottom: auto;
+  min-height: auto;
+}
+
+.tile.update a:hover div {
+  background-color: #155171;
+}
+
+.tile.update a:hover {
+  background: none;
+}
+
+.tile.update span {
+  position: relative;
+  top: auto;
+  bottom: auto;
+}
+
+.tile.update .scrollable {
+  width: 100%;
+  max-height: 275px;
+  overflow: auto;
+}
+
+.updates-block {
+  background: #022b4f;
+  padding: 40px 0;
+  h2 {
+    font-family: "politica-extrabold";
+    text-transform: uppercase;
+  }
+  .d-flex {
+    margin-bottom: 25px;
+    span {
+      a {
+        padding: 3px 0;
+        color: #fff;
+        margin-left: 15px;
+        border-bottom: 2px solid transparent;
+        text-decoration: none;
+        &:hover {
+          border-color: #fcbf00;
+        }
+      }
+    }
+  }
+  .layout {
+    .layout__region {
+      div {
+        height: 100%;
+        div {
+          height: auto;
+        }
+      }
+      .update {
+        height: 100%;
+        overflow: auto !important;
+      }
+    }
+  }
+  .updates {
+    .col-lg-4 {
+      .row {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.workshop-view .view-content.row{
+	display : block;
+	div{
+		padding:0px;
+	}
+	p{
+		margin:5px 0px;
+	}
+	.preview{
+		padding-right: 10px;
+	}
+}
+
+.feeds-block .view-content.row{
+	display : block;	
+	.news {
+		margin-bottom:0px;
+		padding: 0px 10px;
+		p{
+			margin-top:5px;
+		}
+	}	
+	.col-12{
+		padding: 0px;
+	}
+}
+
+.tile {
+  a {
+    .announcement {
+      display: flex !important;
+      .date {
+        font-weight: 500;
+        color: #516370;
+        font-size: 0.9rem;
+        //text-align: center;
+        line-height: 1.5rem;
+        padding: 8px 10px;
+        &::after {
+          content: "";
+          display: block;
+          border-bottom: 2px solid #65c1be;
+          display: table;
+          width: 90%;
+        }
+        span {
+          font-size: 1.5rem;
+          font-weight: 700;
+          margin-top: 0;
+          font-family: "Aktiv Grotesk" !important;
+        }
+      }
+	  .time {
+        font-weight: 500;
+        color: #516370;
+        font-size: 0.8rem;
+        line-height: 1.5rem;
+        padding: 3px 0px;
+        &::after {
+          content: "";
+          display: block;
+          display: table;
+          width: 90%;
+        }
+        span {
+          font-size: 1.5rem;
+          font-weight: 700;
+          margin-top: 0;
+          font-family: "Aktiv Grotesk" !important;
+        }
+      }
+      .preview {
+        padding-left: 0;
+        flex: 0 0 83.33333%;
+        max-width: 83.33333%;
+      }
+    }
+  }
+}

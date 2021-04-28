@@ -1,0 +1,9 @@
+name: Arden API
+description: Module for random-ish bits of code required.
+package: Custom
+
+type: module
+core: 8.x
+core_version_requirement: ^8 || ^9
+
+#hidden: true

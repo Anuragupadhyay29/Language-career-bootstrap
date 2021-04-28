@@ -1,0 +1,211 @@
+footer {
+    padding: 50px 0 15px 0;
+    background-color: #fff;
+    color: #022b4f;
+    position: relative;
+    h6 {
+        font-weight: 700;
+    }
+    p {
+        margin-top: 0 !important;
+    }
+    .footer_logo {
+        img {
+            max-width: 100px;
+        }
+    }
+    a {
+        color: #022b4f;
+        &:hover {
+            color: #65c1be;
+        }
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    #footer_links {
+        border-top: 1px solid #022b4f;
+        border-bottom: 1px solid #022b4f;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        li {
+            display: block;
+            width: 100%;
+            a {
+                font-weight: 500;
+                padding: 5px 0;
+            }
+        }
+    }
+}
+
+#block-social-media-footer {
+    p {
+        margin: 0;
+        font-weight: 500;
+        span {
+            margin-top: 12px;
+        }
+    }
+    ul#social_icons {
+        list-style: none;
+        display: flex;
+        li {
+            margin-left: 15px;
+            a {
+                img {
+                    max-height: 25px;
+                    max-width: 25px;
+                }
+            }
+        }
+    }
+}
+
+.simplenews-subscriber-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    h2 {
+        border: none;
+        text-transform: inherit;
+        font-weight: 700;
+        width: 120px;
+    }
+    label.form-required,
+    .description {
+        display: none;
+    }
+    .form-group {
+        margin-bottom: 0;
+    }
+    form {
+        padding: 6px 6px 6px 10px;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        display: flex;
+        max-width: 450px;
+        .form-control {
+            border: none;
+            height: 35px;
+            outline: none;
+        }
+        .btn {
+            background: #65c1be;
+            border: none;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+    }
+}
+
+.supportBtn {
+    background: #65c1be;
+    color: #fff;
+    position: fixed;
+    right: -38px;
+    top: 35%;
+    z-index: 999;
+    transform: rotate(-90deg);
+    display: block;
+    padding: 7px 25px;
+    font-weight: 500;
+    text-decoration: none !important;
+    &:hover {
+        color: #022b4f;
+    }
+}
+
+#backtotop {
+    height: 50px;
+    width: 50px;
+    background-size: contain;
+}
+
+@include media-breakpoint-down(lg) {
+    footer {
+        padding: 25px 0;
+    }
+    #block-social-media-footer {
+        p {
+            span {
+                float: none !important;
+                margin: 0;
+            }
+        }
+        ul#social_icons {
+            li {
+                margin-left: 0;
+                margin-right: 10px;
+            }
+        }
+    }
+    .simplenews-subscriber-form {
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+        justify-content: start;
+        h2 {
+            width: auto;
+        }
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    #block-footer-logo {
+        position: absolute;
+        top: 0;
+    }
+    #block-social-media-footer,
+    .simplenews-subscriber-form {
+        padding-left: 125px;
+        flex-basis: 100%;
+    }
+    #footer_links {
+        .col {
+            flex-basis: 50%;
+            max-width: 100%;
+            padding: 3px;
+            margin-bottom: 15px;
+            a,
+            p {
+                font-size: 13px;
+            }
+        }
+    }
+    .supportBtn {
+        right: -29px;
+        top: 40%;
+        padding: 5px 15px;
+    }
+}
+
+@media (max-width: 450px) {
+    #block-footer-logo {
+        position: relative;
+        display: table;
+        margin: 0 auto;
+    }
+    #block-social-media-footer,
+    .simplenews-subscriber-form {
+        padding-left: 0px;
+    }
+    #block-social-media-footer {
+        .text-formatted {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            p {
+                padding-right: 15px;
+            }
+        }
+    }
+}

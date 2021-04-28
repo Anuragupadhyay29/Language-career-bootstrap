@@ -1,0 +1,31 @@
+@font-face {
+    font-family: 'Aktiv Grotesk';
+    src: url('./../../../fonts/AktivGroteskCorp-Regular.eot');
+    src: local('AktivGroteskCorp-Regular'), url('./../../fonts/AktivGroteskCorp-Regular.eot?#iefix') format('embedded-opentype'), url('./../../fonts/AktivGroteskCorp-Regular.woff2') format('woff2'), url('./../../fonts/AktivGroteskCorp-Regular.woff') format('woff'), url('./../../fonts/AktivGroteskCorp-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aktiv Grotesk';
+    src: url('./../../fonts/AktivGroteskCorp-Medium.eot');
+    src: local('./../../fonts/AktivGroteskCorp-Medium'), url('./../../fonts/AktivGroteskCorp-Medium.eot?#iefix') format('embedded-opentype'), url('./../../fonts/AktivGroteskCorp-Medium.woff2') format('woff2'), url('./../../fonts/AktivGroteskCorp-Medium.woff') format('woff'), url('./../../fonts/AktivGroteskCorp-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aktiv Grotesk';
+    src: url('./../../fonts/AktivGroteskCorp-Bold.eot');
+    src: local('./../../fonts/AktivGroteskCorp-Bold'), url('./../../fonts/AktivGroteskCorp-Bold.eot?#iefix') format('embedded-opentype'), url('./../../fonts/AktivGroteskCorp-Bold.woff2') format('woff2'), url('./../../fonts/AktivGroteskCorp-Bold.woff') format('woff'), url('./../../fonts/AktivGroteskCorp-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'politica-extrabold';
+    src: url('./../../fonts/politica-extrabold.eot');
+    src: local('☺'), url('./../../fonts/politica-extrabold.woff') format('woff'), url('./../../fonts/politica-extrabold.ttf') format('truetype'), url('./../../fonts/politica-extrabold.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

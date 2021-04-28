@@ -1,0 +1,493 @@
+<?php
+use Drupal\user\Entity\User;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
+
+function arden_page_attachments_alter(array &$page) {
+
+    $meta_tags = array('system_meta_generator', 'MobileOptimized', 'HandheldFriendly');
+    foreach ($page['#attached']['html_head'] as $key => $value) {
+        if (in_array($value[1], $meta_tags)) {
+            unset($page['#attached']['html_head'][$key]);
+        }
+    }
+
+}
+
+function arden_theme_suggestions_html_alter(array &$suggestions, array $variables) {
+
+    if ($node = \Drupal::routeMatch()->getParameter('node')) {
+        if ($node->hasField('field_theme')) {
+            $theme = $node->get('field_theme')->value;
+            $suggestions[] = 'html__'.$theme;
+        }
+    }
+
+}
+
+function arden_preprocess_details(&$variables) {
+    $variables['delete'] = false;
+    if (!in_array($variables['element']['#title'], ['Arden','Inline blocks'])) {
+        $variables['delete'] = true;
+    }
+}
+
+function arden_preprocess_html(&$variables) {
+
+  $meta_tags = [];
+
+  $meta_description = 'Arden University offers online distance learning, blended learning, and blended top-up degrees. These are offered worldwide, or at our UK campuses.';
+  if ($node = \Drupal::request()->attributes->get('node')) {
+
+      if ($node->hasField('field_meta_title')) {
+          if ($node->get('field_meta_title')->value != '') {
+              $variables['head_title'] = $node->get('field_meta_title')->value;
+          }
+      }
+      if ($node->hasField('field_meta_description')) {
+          if ($node->get('field_meta_description')->value != '') {
+              $meta_description = $node->get('field_meta_description')->value;
+          }
+      }
+
+  }
+  $variables['node'] = $node;
+  $variables['google_tag_manager'] = theme_get_setting('google_tag_manager');
+
+  $meta_tags = $meta_tags + [
+    'viewport' => [
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'viewport',
+        'content' => 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no',
+      ],
+    ],
+    'description' => [
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'description',
+        'content' => $meta_description,
+      ],
+    ],
+    'og:title' => [
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'og:title',
+        'content' => 'Blended and Online Distance Learning Courses | Arden University',
+      ],
+    ],
+    'og:url' => [
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'og:url',
+        'content' => $GLOBALS['base_url'],
+      ],
+    ],
+    'og:description' => [
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'og:description',
+        'content' => $meta_description,
+      ],
+    ],
+    'og:image' => [
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'og:image',
+        'content' => 'http://arden.ac.uk/application/themes/arden/img/facebook.jpg',
+      ],
+    ],
+    'author' => [
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'author',
+        'content' => 'Nick Swift',
+      ],
+    ],
+    'google' => [
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'google',
+        'content' => 'notranslate',
+      ],
+    ],
+  ];
+
+  $content_type = '';
+  $social_sharing_title = '';
+  $social_sharing_desc = '';
+
+  if ($node) {
+    $content_type = $node->getType();
+
+    if ($node->hasField('field_social_sharing_title')) {
+      $social_sharing_title = $node->get('field_social_sharing_title')->value;
+    }
+
+    if ($node->hasField('field_social_sharing_description')) {
+      $social_sharing_desc = $node->get('field_social_sharing_description')->value;
+    }
+
+  }
+
+  if ($content_type == 'article' || $social_sharing_title != '') {
+    $meta_tags = $meta_tags + [
+        'twitter:card' => [
+          '#tag' => 'meta',
+          '#attributes' => [
+            'name' => 'twitter:card',
+            'content' => 'summary_large_image',
+          ],
+        ],
+        'twitter:site' => [
+          '#tag' => 'meta',
+          '#attributes' => [
+            'name' => 'twitter:site',
+            'content' => '@Arden_Uni',
+          ],
+        ],
+        'twitter:creator' => [
+          '#tag' => 'meta',
+          '#attributes' => [
+            'name' => 'twitter:creator',
+            'content' => '@Arden_Uni',
+          ],
+        ],
+        'twitter:title' => [
+          '#tag' => 'meta',
+          '#attributes' => [
+            'name' => 'twitter:title',
+            'content' => ($social_sharing_title ? $social_sharing_title : $node->getTitle()),
+          ],
+        ],
+        'twitter:description' => [
+          '#tag' => 'meta',
+          '#attributes' => [
+            'name' => 'twitter:description',
+            'content' => ($social_sharing_desc ? $social_sharing_desc : $meta_description),
+          ],
+        ],
+        'twitter:image' => [
+          '#tag' => 'meta',
+          '#attributes' => [
+            'name' => 'twitter:image',
+            'content' => '',
+          ],
+        ],
+    ];
+
+    if ($content_type == 'article') {
+      $meta_tags = $meta_tags + [
+        'og:type' => [
+          '#tag' => 'meta',
+          '#attributes' => [
+            'name' => 'og:type',
+            'content' => 'article',
+          ],
+        ]
+      ];
+    }
+
+    $meta_tags['og:url']['#attributes']['content'] = $GLOBALS['base_url'].''.\Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$node->id());
+    $meta_tags['og:title']['#attributes']['content'] = ($social_sharing_title ? $social_sharing_title : $node->getTitle());
+    $meta_tags['og:description']['#attributes']['content'] = ($social_sharing_desc ? $social_sharing_desc : $meta_description);
+
+    if ($node->hasField('field_social_sharing_image')) {
+      if ($node->get('field_social_sharing_image')->first()) {
+        $social_sharing_image_url = '';
+        if ($node->get('field_social_sharing_image')->first()->entity->hasField('field_media_image')) {
+          $social_sharing_image_url = file_create_url($node->get('field_social_sharing_image')->first()->entity->get('field_media_image')->first()->entity->uri->value);
+        }
+        else {
+          $fid = $node->get('field_social_sharing_image')->first()->get('target_id')->getValue();
+          $file = \Drupal\file\Entity\File::load($fid);
+          if ($file) {
+            $social_sharing_image_url = $file->uri->value;
+            $social_sharing_image_url = file_create_url($social_sharing_image_url);
+          }
+        }
+
+        $meta_tags['twitter:image']['#attributes']['content'] = $social_sharing_image_url;
+        $meta_tags['og:image']['#attributes']['content'] = $social_sharing_image_url;
+      }
+    }
+
+  }
+
+  foreach($meta_tags as $key => $value) {
+    $variables['page']['#attached']['html_head'][] = [$value, $key];
+  }
+
+  foreach($variables['page']['#attached']['html_head_link'] as $key1 => $arr_link) {
+    foreach($arr_link as $key2 => $link) {
+      if ($link['rel'] == 'shortcut icon') {
+        unset($variables['page']['#attached']['html_head_link'][$key1]);
+      }
+    }
+  }
+
+  $variables['page']['#attached']['html_head_link'][][] = [
+    'rel' => 'shortcut icon',
+    'href' => 'https://d2axn0jabmue5e.cloudfront.net/s3fs-public/favicon/favicon.ico',
+  ];
+
+}
+
+function arden_preprocess_block__arden_breadcrumbs(&$variables) {
+    $breadcrumbs = $variables['elements']['content']['#links'];
+
+    $arr_breadcrumbs = [];
+    if (count($breadcrumbs) > 0) {
+
+        foreach($breadcrumbs as $breadcrumb) {
+            $breadcrumb_text = '';
+            if (!is_array($breadcrumb->getText())) {
+                $breadcrumb_text = $breadcrumb->getText();
+            }
+            else if (isset($breadcrumb->getText()['#markup'])) {
+                $breadcrumb_text = $breadcrumb->getText()['#markup'];
+            }
+            if ($breadcrumb_text != '') {
+                $arr_breadcrumbs[] = ['text' => (string)$breadcrumb_text, 'url' => $GLOBALS['base_url'].''.$breadcrumb->getUrl()->toString()];
+            }
+        }
+        if ($node = \Drupal::request()->attributes->get('node')) {
+            $arr_breadcrumbs[] = ['text' => (string)$node->getTitle(), 'url' => $GLOBALS['base_url'].''.\Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$node->id())];
+        }
+        /*if ($term = \Drupal::request()->attributes->get('taxonomy_term')) {
+            $arr_breadcrumbs[] = ['text' => 'Knowledge Base', 'url' => $GLOBALS['base_url'].'/knowledge-base'];
+        }*/
+        if ($term = \Drupal::request()->attributes->get('taxonomy_term')) {
+            //$arr_breadcrumbs[] = ['text' => 'Knowledge Base', 'url' => $GLOBALS['base_url'].'/knowledge-base'];
+            $arr_breadcrumbs[] = ['text' => (string)$term->name->first()->value, 'url' => $GLOBALS['base_url'].''.\Drupal::service('path.alias_manager')->getAliasByPath('/taxonomy/term/'.$term->id())];
+
+            if (isset($arr_breadcrumbs[1])) {
+                if ($arr_breadcrumbs[1]['text'] != 'Knowledge Base') {
+                    $arr_breadcrumbs = array_merge(array_slice($arr_breadcrumbs, 0, 1), [['text' => 'Knowledge Base', 'url' => $GLOBALS['base_url'].'/knowledge-base']], array_slice($arr_breadcrumbs, 1));
+                }
+            }
+
+        }
+
+    }
+
+    $variables['breadcrumbs'] = $arr_breadcrumbs;
+}
+
+function arden_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+    if ($form_id == 'layout_builder_add_block' || $form_id == 'layout_builder_update_block') {
+        if ($form['settings']['admin_label']['#plain_text'] != 'Tabs' && $form['settings']['admin_label']['#plain_text'] != 'Featured banner' && $form['settings']['admin_label']['#plain_text'] != 'Course Page List' && $form['settings']['admin_label']['#plain_text'] != 'Page List' && $form['settings']['admin_label']['#plain_text'] != 'Address' && $form['settings']['admin_label']['#plain_text'] != 'Button' && $form['settings']['admin_label']['#plain_text'] != 'Quote') {
+            $form['settings']['label']['#required'] = false;
+            $form['settings']['label']['#type'] = 'hidden';
+            $form['settings']['label_display']['#default_value'] = false;
+            $form['settings']['label_display']['#type'] = 'hidden';
+            $form['settings']['label']['#prefix'] = '<div style="display:none;">';
+            $form['settings']['label']['#suffix'] = '</div>';
+            $form['settings']['label_display']['#prefix'] = '<div style="display:none;">';
+            $form['settings']['label_display']['#suffix'] = '</div>';
+        }
+    }
+}
+
+function arden_preprocess_block__inline_block__html(&$variables) {
+
+    //_arden_mobile_display($variables);
+
+    if(isset($variables['content']['body'][0])) {
+        $variables['html'] = $variables['content']['body'][0]['#text'];
+    }
+    else {
+        $variables['html'] = '&nbsp;&nbsp;';
+    }
+
+}
+
+function arden_preprocess_block__inline_block__announcements(&$variables) {
+
+  \Drupal::service('page_cache_kill_switch')->trigger();
+
+  //_arden_mobile_display($variables);
+
+  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+  $query->condition('type', 'announcement');
+  $query->condition('status', 1);
+  $query->condition('field_date', date('Y-m-d'), '>=');
+  $query->sort('field_date', 'ASC');
+  $announcements = $query->execute();
+  $announcements = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($announcements);
+
+  $variables['announcements'] = $announcements;
+
+}
+
+function arden_preprocess_block__inline_block__articles(&$variables) {
+
+  \Drupal::service('page_cache_kill_switch')->trigger();
+
+  //_arden_mobile_display($variables);
+
+  $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+  $query->condition('type', 'article');
+  $query->condition('status', 1);
+  $query->sort('created', 'DESC');
+  $articles = $query->execute();
+  $articles = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($articles);
+
+  $variables['articles'] = $articles;
+
+}
+
+function arden_preprocess_block__inline_block__search(&$variables) {
+
+    //_arden_mobile_display($variables);
+
+    $variables['html'] = '';
+
+}
+
+function arden_preprocess_block__banner(&$variables) {
+
+  \Drupal::service('page_cache_kill_switch')->trigger();
+
+  $banners = null;
+
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    //if (count($node->get('field_banner')) > 0) {
+    if ($node->hasField('field_banner')) {
+      $banners = $node->get('field_banner')->referencedEntities();
+    }
+  }
+
+  $variables['banners'] = $banners;
+
+}
+
+function arden_preprocess(array &$variables, $hook) {
+$variables['base_path'] = base_path();
+}
+
+function arden_preprocess_node(&$variables) {
+
+  if ($variables['node']->getType() == 'page') {
+
+    $node = \Drupal::routeMatch()->getParameter('node');
+
+    $arr_nav = [];
+    foreach(range('a','z') as $v){
+      $arr_nav[] = $v;
+    }
+    $variables['arr_nav'] = $arr_nav;
+
+    //die('<pre>'.print_r($variables['arr_nav'],true).'</pre>');
+
+    // FAQs
+    if ($node->id() == 13) {
+      $faqs = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('faqs');
+      $variables['faqs'] = $faqs;
+    }
+    // A to Z
+    else if ($node->id() == 20) {
+
+      $arr_a_to_z = [];
+      foreach ($arr_nav as $letter) {
+        $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+        $query->condition('type', 'a_to_z');
+        $query->condition('status', 1);
+        $query->condition('field_letter', $letter);
+        $query->sort('title', 'ASC');
+        $a_to_z = $query->execute();
+        $a_to_z = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($a_to_z);
+        $arr_a_to_z[$letter] = $a_to_z;
+      }
+
+      $variables['arr_a_to_z'] = $arr_a_to_z;
+    }
+
+  }
+
+}
+
+function arden_preprocess_page(&$variables) {
+
+  $variables['url'] = \Drupal::request()->getRequestUri();
+
+  $block_manager = \Drupal::service('plugin.manager.block');
+  // You can hard code configuration or you load from settings.
+  $config = [];
+  /*if (count($variables['course_ids']) > 0) {
+      if (count($variables['course_ids']) == 1) {
+          $config = ['course_id' => array_keys($variables['course_ids'])[0]];
+      }
+      else {
+          $config = ['course_id' => array_keys($variables['course_ids'])];
+      }
+  }*/
+
+  /*
+  $block = \Drupal\block\Entity\Block::load('search');
+  $block_content = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  $variables['search_block'] = $block_content;
+  */
+
+  /*$plugin_block = $block_manager->createInstance('search_block', $config);
+  // Some blocks might implement access check.
+  $access_result = $plugin_block->access(\Drupal::currentUser());
+  // Return empty render array if user doesn't have access.
+  // $access_result can be boolean or an AccessResult class
+  if (is_object($access_result) && $access_result->isForbidden() || is_bool($access_result) && !$access_result) {
+      // You might need to add some cache tags/contexts.
+      return [];
+  }
+  $render = $plugin_block->build();
+  // In some cases, you need to add the cache tags/context depending on
+  // the block implementation. As it's possible to add the cache tags and
+  // contexts in the render method and in ::getCacheTags and
+  // ::getCacheContexts methods.
+  $variables['search'] = $render;
+  */
+  /*
+  $block_livehcat = Drupal\block\Entity\Block::load('livechat');
+  $show_livechat = false;
+  if ($block_livehcat) {
+      if ((int)$block_livehcat->access('view') == 1) {
+          $show_livechat = true;
+      }
+  }
+  $variables['show_livechat'] = $show_livechat;
+  */
+
+}
+
+function arden_preprocess_block__arden_main_menu(&$variables) {
+
+  $menu_name = 'secondary-navigation';
+  // Find the menu item corresponding to the entity (node).
+  $menu_link_service = \Drupal::getContainer()->get('plugin.manager.menu.link');
+  $route_params = [];
+  $menu_parameters = new \Drupal\Core\Menu\MenuTreeParameters();
+  // Get the tree.
+  $menu_tree_service = \Drupal::service('menu.link_tree');
+  $tree = $menu_tree_service->load($menu_name, $menu_parameters);
+  // Apply some manipulators (checking the access, sorting).
+  $manipulators = [
+    ['callable' => 'menu.default_tree_manipulators:checkNodeAccess'],
+    ['callable' => 'menu.default_tree_manipulators:checkAccess'],
+    ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+  ];
+  $tree = $menu_tree_service->transform($tree, $manipulators);
+
+  $arr_secondary_menu = null;
+
+  if ($tree) {
+    $arr_secondary_menu = '<ul class="navbar-nav mr-auto">';
+    foreach ($tree as $element) {
+      $arr_secondary_menu .= '<li class="nav-item"><a href="'.$element->link->getUrlObject()->toString().'" class="nav-link">'.$element->link->getTitle().'</a>';
+    }
+    $arr_secondary_menu .= '</ul>';
+  }
+
+  $variables['secondary_menu'] = $arr_secondary_menu;
+
+}

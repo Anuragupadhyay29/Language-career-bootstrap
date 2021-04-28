@@ -1,0 +1,32 @@
+name: Arden University
+type: theme
+description: 'A custom theme developed for Arden Library by Nick Swift.'
+base theme: false
+core: 8.x
+core_version_requirement: ^8 || ^9
+screenshot: arden.png
+libraries:
+  - arden/global-styling
+  - arden/global-scripts
+libraries-override:
+  system/base: false
+  system/admin: false
+  system/maintenance: false
+  system/drupal.system: false
+  system/drupal.system.modules: false
+  system/diff: false
+  system/drupal.system.date: false
+  views/views.module: false
+  core/html5shiv: false
+  core/classList:
+regions:
+  header: Header
+  banner: Banner
+  primary_menu: 'Primary menu'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  highlighted: Highlighted
+  breadcrumb: Breadcrumb
+  content: Content
+  sidebar: 'Sidebar'
+  footer: Footer

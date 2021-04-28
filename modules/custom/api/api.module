@@ -1,0 +1,23 @@
+<?php
+
+use Drupal\Core\Render\Markup;
+
+/**
+ * Implements hook_help().
+ */
+function api_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
+    switch ($route_name) {
+        case 'help.page.api':
+            $output = '<h3>' . t('About') . '</h3>';
+            $output .= '<p>' . t('This API module was written by Nick Swift.</p>');
+            return $output;
+        break;
+    }
+}
+
+// Function to remove the "Delete" tab for all users apart from NRS
+function api_menu_local_tasks_alter(&$data, $route_name) {
+    if (\Drupal::currentUser()->id() != 1) {
+        unset($data['tabs'][0]['entity.node.delete_form']);
+    }
+}

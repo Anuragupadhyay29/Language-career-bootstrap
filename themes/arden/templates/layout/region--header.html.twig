@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region <div>.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ *
+ * @see template_preprocess_region()
+ *
+ * @ingroup themeable
+ */
+#}
+
+<header class="pt-2 pb-2 pt-md-4 pb-md-4">
+    <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-5">
+            <a href="/"><img src="https://bucket-st1-alpha-lib-arden-dev01.s3-eu-west-1.amazonaws.com/s3fs-public/arden_library_logo.png" alt="Arden Library" width="230" /></a>
+          </div>
+          <div class="col-md-7" style="padding-right: 0;">
+            {{ content }}
+          </div>
+        </div>
+    </div>
+</header>

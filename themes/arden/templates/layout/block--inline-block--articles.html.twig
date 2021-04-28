@@ -1,0 +1,35 @@
+{% if is_mobile %}
+    {% if mobile_display == true %}
+        <div{{ attributes }}>
+            {{ title_suffix }}
+            {{ html|raw }}
+        </div>
+    {% endif %}
+
+{% else %}
+    <div{{ attributes }}>
+      {{ title_suffix }}
+
+      <div class="tile update" style="overflow: scroll;">
+        <h3>News Feed</h3>
+
+        <div class="scrollable">
+        {% if articles is iterable %}
+          {% for key, article in articles %}
+
+            <a href="{{ path('entity.node.canonical', {'node': article.id}) }}" title="{{ article.title.value }}">
+              <div class="news">
+                <div class="preview col-12">
+                  <h4>{{ article.title.value }}</h4>
+                  <p>{{ article.body.0.summary|raw }}</p>
+                </div>
+              </div>
+            </a>
+
+          {% endfor %}
+        {% endif %}
+        </div>
+
+      </div>
+    </div>
+{% endif %}

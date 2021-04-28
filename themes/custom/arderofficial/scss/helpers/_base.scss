@@ -1,0 +1,28 @@
+html {
+    border-top: 15px solid #002b4f;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Aktiv Grotesk' !important;
+}
+
+@media only screen and (min-width: 600px) {
+    html {
+        border-top: 7px solid #002b4f;
+    }
+}
+
+main {
+    background-color: #f0f5f8;
+    h2 {
+        text-transform: uppercase;
+        font-family: 'politica-extrabold';
+        color: #002b4f;
+    }
+}
+
+#block-arderofficial-content {
+    display: block;
+}
